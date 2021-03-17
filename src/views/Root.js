@@ -1,26 +1,17 @@
-import logo from "assets/logo.svg";
-import "./Root.css";
-import UserList from "components/UserList/UserList";
+import UserList from "components/organisms/UserList/UserList";
+import { ThemeProvider } from "styled-components";
+import { GlobalStyle } from "assets/styles/GlobalStyle";
+import { theme } from "assets/styles/theme";
+import { Wrapper } from "./Root.styles";
 
 function Root() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/Root.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />{" "}
+      <Wrapper>
         <UserList />
-      </header>
-    </div>
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 
