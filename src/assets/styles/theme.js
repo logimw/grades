@@ -7,6 +7,7 @@ export const theme = {
     error: "#5E0B15",
     green: "#28965A",
     russian: "#0B0033",
+    white: "#FAFAFA",
   },
   fontSize: {
     l: "1.7rem",

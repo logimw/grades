@@ -7,8 +7,8 @@ const UserList = () => {
   return (
     <Wrapper>
       <ul>
-        {users.map((userData) => {
-          return <UsersListItem userData={userData} />;
+        {users.map((userData, index) => {
+          return <UsersListItem key={index} userData={userData} />;
         })}
       </ul>
     </Wrapper>

@@ -19,3 +19,16 @@ export const Wrapper = styled.li`
     background-color: #8c7a6b;
   }
 `;
+export const Avg = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
+  background: ${(props) =>
+    parseFloat(props.avg) >= 4
+      ? props.theme.colors.green
+      : parseFloat(props.avg) >= 3
+      ? props.theme.colors.bronze
+      : props.theme.colors.error};
+`;
