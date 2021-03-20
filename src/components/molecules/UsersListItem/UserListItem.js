@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import Button from "components/atoms/Button/Button";
 import { Avg, Wrapper } from "./UserListItem.styles";
 
-const UsersListItem = ({ userData: { name, avg, attendance = "0%" } }) => {
+const UsersListItem = ({
+  deleteUser,
+  userData: { name, avg, attendance = "0%" },
+}) => {
   return (
     <Wrapper>
       <Avg avg={avg}>{avg}</Avg>
@@ -11,7 +14,7 @@ const UsersListItem = ({ userData: { name, avg, attendance = "0%" } }) => {
         <p>{name}</p>
         <p>attendance {attendance}</p>
       </div>
-      <Button />
+      <Button onClick={() => deleteUser(name)} />
     </Wrapper>
   );
 };
