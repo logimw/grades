@@ -2,7 +2,7 @@ export const theme = {
   colors: {
     secondary: "#8C7A6B",
     bronze: "#BC8034",
-    primary: "#D9CAB3",
+    primary: "#e7e0dc",
     red: "#90323D",
     error: "#5E0B15",
     green: "#28965A",

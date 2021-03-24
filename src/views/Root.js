@@ -1,5 +1,5 @@
 import UserList from "components/organisms/UserList/UserList";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "assets/styles/GlobalStyle";
 import { theme } from "assets/styles/theme";
 import { Wrapper } from "./Root.styles";
@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { users as usersData } from "../data/users";
 import Form from "components/organisms/Form/Form";
-import Navigation from "../components/molecules/Navigation/Navigation";
+import MainTemplate from "components/templates/MainTemplate/MainTemplate";
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
@@ -66,26 +66,27 @@ const Root = () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />{" "}
-        <Wrapper>
-          <Navigation />
-          <Switch>
-            <Route path="/add-user">
-              <Form
-                formValues={formValues}
-                handleAddUser={handleAddUser}
-                handleInputChange={handleInputChange}
-              />
-            </Route>
-            <Route path="/">
-              <UserList
-                deleteUser={deleteUser}
-                users={users}
-                isLoading={isLoading}
-              />
-            </Route>{" "}
-          </Switch>
-        </Wrapper>
+        <GlobalStyle />
+        <MainTemplate>
+          <Wrapper>
+            <Switch>
+              <Route path="/add-user">
+                <Form
+                  formValues={formValues}
+                  handleAddUser={handleAddUser}
+                  handleInputChange={handleInputChange}
+                />
+              </Route>
+              <Route path="/">
+                <UserList
+                  deleteUser={deleteUser}
+                  users={users}
+                  isLoading={isLoading}
+                />
+              </Route>{" "}
+            </Switch>
+          </Wrapper>
+        </MainTemplate>
       </ThemeProvider>
     </Router>
   );
