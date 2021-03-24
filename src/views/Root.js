@@ -1,5 +1,5 @@
 import UserList from "components/organisms/UserList/UserList";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "assets/styles/GlobalStyle";
 import { theme } from "assets/styles/theme";
 import { Wrapper } from "./Root.styles";
@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { users as usersData } from "../data/users";
 import Form from "components/organisms/Form/Form";
+import Navigation from "../components/molecules/Navigation/Navigation";
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
@@ -61,15 +62,13 @@ const Root = () => {
     setUsers([newUser, ...users]);
     setFormValues(initialFormState);
   };
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />{" "}
         <Wrapper>
-          <nav>
-            <Link to="add-user">add user</Link>
-            <Link to="/">home</Link>
-          </nav>
+          <Navigation />
           <Switch>
             <Route path="/add-user">
               <Form
