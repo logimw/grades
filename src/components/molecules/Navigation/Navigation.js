@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { StyledLink } from "./Navigation.styles";
 
 export const StyledNav = styled.nav`
   height: 100vh;
@@ -17,6 +17,7 @@ export const NavWrapper = styled.nav`
     font-size: ${({ theme }) => theme.fontSize.l};
     color: ${({ theme }) => theme.colors.white};
     text-align: center;
+    display: block;
   }
 `;
 
@@ -40,8 +41,10 @@ const Navigation = () => {
         <h1>Grades</h1>
       </Logo>
       <NavWrapper>
-        <Link to="add-user">add user</Link>
-        <Link to="/">home</Link>
+        <StyledLink exact to="/">
+          home
+        </StyledLink>
+        <StyledLink to="add-user">add user</StyledLink>
       </NavWrapper>
     </StyledNav>
   );
