@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import DeleteButton from "components/atoms/DeleteButton/DeleteButton";
 import { Avg, Wrapper } from "./UserListItem.styles";
 import { UsersContext } from "providers/UsersProvider";
+import { UserShape } from "types";
 
 const UsersListItem = ({ userData: { name, avg, attendance = "0%" } }) => {
   const { deleteUser } = useContext(UsersContext);
@@ -19,11 +20,7 @@ const UsersListItem = ({ userData: { name, avg, attendance = "0%" } }) => {
 };
 
 UsersListItem.propTypes = {
-  userData: PropTypes.shape({
-    avg: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    attendance: PropTypes.string,
-  }),
+  userData: PropTypes.shape(UserShape),
 };
 
 export default UsersListItem;

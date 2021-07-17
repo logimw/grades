@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useReducer, useContext } from "react";
 import { Wrapper } from "../components/organisms/UserList/UserList.styles";
 import FormField from "../components/molecules/FormField/FormField";
 import { Button } from "../components/atoms/Button/Button";
@@ -8,21 +8,60 @@ const initialFormState = {
   name: "",
   avg: "",
   attendance: "",
+  consent: "",
+  error: "",
+};
+
+const actionTypes = {
+  inputChange: "INPUT CHANGE",
+  clearValues: "CLEAR VALUES",
+  consentToggle: "CONSENT TOGGLE",
+  throwError: "THROW ERROR",
+};
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actionTypes.inputChange:
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    case actionTypes.clearValues:
+      return initialFormState;
+    case actionTypes.consentToggle:
+      return {
+        ...state,
+        consent: !state.consent,
+      };
+    case actionTypes.throwError:
+      return {
+        ...state,
+        error: action.errorValue,
+      };
+    default:
+      return state;
+  }
 };
 const AddUser = () => {
-  const [formValues, setFormValues] = useState(initialFormState);
+  const [formValues, dispatch] = useReducer(reducer, initialFormState);
   const { handleAddUser } = useContext(UsersContext);
   const handleInputChange = (e) => {
-    console.log(formValues);
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
+    dispatch({
+      type: actionTypes.inputChange,
+      field: e.target.name,
+      value: e.target.value,
     });
   };
   const handleSubmitUser = (e) => {
     e.preventDefault();
-    handleAddUser(formValues);
-    setFormValues(initialFormState);
+    if (formValues.consent) {
+      handleAddUser(formValues);
+      dispatch({ type: actionTypes.clearValues });
+    } else {
+      dispatch({
+        type: actionTypes.throwError,
+        errorValue: "Consent must be checked!",
+      });
+    }
   };
   return (
     <Wrapper as="form" onSubmit={handleSubmitUser}>
@@ -48,7 +87,15 @@ const AddUser = () => {
         value={formValues.avg}
         onChange={handleInputChange}
       />
+      <FormField
+        id="consent"
+        name="consent"
+        label="Consent"
+        type="checkbox"
+        onChange={() => dispatch({ type: actionTypes.consentToggle })}
+      />
       <Button>Add</Button>
+      {formValues.error ? <p>{formValues.error}</p> : null}
     </Wrapper>
   );
 };
