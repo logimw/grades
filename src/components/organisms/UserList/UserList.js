@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { UserShape } from "types";
 import { Title } from "components/atoms/Title/Title";
 
-const UserList = ({ users }) => {
+const UserList = ({ users = [] }) => {
   return (
     <>
       <Title>{!users ? "Loading..." : "Students list"}</Title>

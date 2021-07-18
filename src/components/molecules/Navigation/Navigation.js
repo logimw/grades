@@ -41,7 +41,7 @@ const Navigation = () => {
         <h1>Grades</h1>
       </Logo>
       <NavWrapper>
-        <StyledLink exact to="/">
+        <StyledLink exact to="/group">
           home
         </StyledLink>
         <StyledLink to="add-user">add user</StyledLink>
