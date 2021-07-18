@@ -10,6 +10,7 @@ export const theme = {
     white: "#FAFAFA",
   },
   fontSize: {
+    xl: "2.1rem",
     l: "1.7rem",
     m: "1.2rem",
     s: "1.1rem",

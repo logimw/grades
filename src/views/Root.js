@@ -10,29 +10,7 @@ import AddUser from "./AddUser";
 import Dashboard from "./Dashboard";
 import UsersProvider from "../providers/UsersProvider";
 
-// const mockAPI = (success) => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       if (usersData) {
-//         resolve([...usersData]);
-//       } else reject({ message: "Error" });
-//     }, 2000);
-//   });
-// };
-
 const Root = () => {
-  // const [isLoading, setIsLoading] = useState([]);
-  //
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   mockAPI()
-  //     .then((data) => {
-  //       setIsLoading(false);
-  //       setUsers(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
